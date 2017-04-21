@@ -1,0 +1,58 @@
+<template>
+  <div class="main-content">
+    <tab>
+      <tab-item selected @on-item-click="onItemClick(1)">精选</tab-item>
+      <tab-item @on-item-click="onItemClick(2)">未发货</tab-item>
+      <tab-item @on-item-click="onItemClick(3)">全部订单</tab-item>
+    </tab>
+  </div>
+</template>
+<script>
+  import {Tab, TabItem} from 'vux'
+  export default {
+    components: {
+      Tab,
+      TabItem
+    },
+    data () {
+      return {
+      }
+    },
+    methods: {
+      onItemClick (index) {
+        console.log('on item click:', index)
+      },
+      addTab () {
+        if (this.list2.length < 5) {
+          this.list2 = list().slice(0, this.list2.length + 1)
+        }
+      },
+      removeTab () {
+        if (this.list2.length > 1) {
+          this.list2 = list().slice(0, this.list2.length - 1)
+        }
+      },
+      next () {
+        if (this.index === this.list2.length - 1) {
+          this.index = 0
+        } else {
+          ++this.index
+        }
+      },
+      prev () {
+        if (this.index === 0) {
+          this.index = this.list2.length - 1
+        } else {
+          --this.index
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="less" scoped>
+  @import '~vux/src/styles/1px.less';
+  @import '~vux/src/styles/center.less';
+
+
+</style>
