@@ -29,7 +29,7 @@
       },
       title() {
         if (this.route.path === '/main') return '首页'
-        if (this.route.path === '/news') return '咨询'
+        if (this.route.path === '/author') return '作家'
       }
     }
   }

@@ -1,26 +1,28 @@
 <template>
   <div class="main-content">
     <tab>
-      <tab-item selected @on-item-click="onItemClick(1)">精选</tab-item>
-      <tab-item @on-item-click="onItemClick(2)">未发货</tab-item>
-      <tab-item @on-item-click="onItemClick(3)">全部订单</tab-item>
+      <tab-item selected @on-item-click="onItemClick('main')">精选</tab-item>
+      <tab-item @on-item-click="onItemClick('author')">作者</tab-item>
+      <tab-item @on-item-click="onItemClick(3)">全部</tab-item>
     </tab>
+    <router-view></router-view>
   </div>
 </template>
 <script>
   import {Tab, TabItem} from 'vux'
+  import NewsList from '../TabContent/newsList'
   export default {
     components: {
       Tab,
-      TabItem
+      TabItem,
+      NewsList
     },
     data () {
-      return {
-      }
+      return {}
     },
     methods: {
       onItemClick (index) {
-        console.log('on item click:', index)
+        this.$router.push({path: index})
       },
       addTab () {
         if (this.list2.length < 5) {

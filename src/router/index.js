@@ -3,11 +3,11 @@ import VueRouter from 'vue-router'
 // var rootPath=config.build.assetsPublicPath;
 var rootPath = "/";
 
-
 /** -------------------------------------------------- 懒加载start --------------------------------------------*/
 
-const Home = resolve => require(['../components/Home.vue'], resolve)
 const Main = resolve => require(['../components/main/Main.vue'], resolve)
+const newsList = resolve => require(['../components/TabContent/newsList.vue'], resolve)
+const authorList = resolve => require(['../components/TabContent/authorList.vue'], resolve)
 const News = resolve => require(['../components/news/Hello.vue'], resolve)
 
 /** -------------------------------------------------- 懒加载end --------------------------------------------*/
@@ -16,17 +16,21 @@ const router = new VueRouter({
   base: __dirname,
   //路由映射map
   routes: [
-    { path: '/', redirect: '/main' },
-    {
-      path: rootPath,
-      component: Home,
-      meta: {scrollToTop: true},
-      name: 'home'
-    },
+    {path: rootPath, redirect: '/main'},
     {
       path: rootPath + 'main',
       component: Main,
-      name: 'main'
+      name: 'main',
+      children: [{
+        path: '',
+        component: newsList,
+        name: 'list'
+      }, {
+        path: 'author',
+        component: authorList,
+        name: 'author',
+        alias: '/author'
+      }]
     },
     {
       path: rootPath + 'news',
