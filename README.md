@@ -1,6 +1,6 @@
 # vux
 
-> A Vue.js project
+> 通过接口调用数据，scroller向上滚动加载数据
 
 ## Build Setup
 
