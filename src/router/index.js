@@ -8,6 +8,7 @@ var rootPath = "/";
 const Main = resolve => require(['../components/main/Main.vue'], resolve)
 const newsList = resolve => require(['../components/TabContent/newsList.vue'], resolve)
 const authorList = resolve => require(['../components/TabContent/authorList.vue'], resolve)
+const All = resolve => require(['../components/TabContent/allList.vue'], resolve)
 const News = resolve => require(['../components/news/Hello.vue'], resolve)
 
 /** -------------------------------------------------- 懒加载end --------------------------------------------*/
@@ -30,10 +31,15 @@ const router = new VueRouter({
         component: authorList,
         name: 'author',
         alias: '/author'
+      }, {
+        path: 'all',
+        component: All,
+        name: 'all',
+        alias: '/all'
       }]
     },
     {
-      path: rootPath + 'news',
+      path: rootPath + 'news/:id',
       component: News,
       name: 'news'
     },

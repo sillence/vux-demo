@@ -1,21 +1,25 @@
 <template>
-  <div class="main-content">
-    <tab>
-      <tab-item selected @on-item-click="onItemClick('main')">精选</tab-item>
-      <tab-item @on-item-click="onItemClick('author')">作者</tab-item>
-      <tab-item @on-item-click="onItemClick(3)">全部</tab-item>
-    </tab>
+  <div class="weui_header_bd">
+    <div class="tab-wrapper" style="position: fixed;top: 46px;z-index: 1200;width: 100%">
+      <tab>
+        <tab-item :selected="path=='/main'" @on-item-click="onItemClick('main')">精选</tab-item>
+        <tab-item :selected="path=='/author'" @on-item-click="onItemClick('author')">作者</tab-item>
+        <tab-item :selected="path=='/all'" @on-item-click="onItemClick('all')">全部</tab-item>
+      </tab>
+    </div>
     <router-view></router-view>
   </div>
 </template>
 <script>
   import {Tab, TabItem} from 'vux'
   import NewsList from '../TabContent/newsList'
+  import All from '../TabContent/allList'
   export default {
     components: {
       Tab,
       TabItem,
-      NewsList
+      NewsList,
+      All
     },
     data () {
       return {}
@@ -48,11 +52,21 @@
           --this.index
         }
       }
+    },
+    computed: {
+      route(){
+        //this.$store.state.route要用到vuex
+        return this.$store.state.route
+      },
+      path() {
+        return this.route.path;
+      }
     }
+
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @import '~vux/src/styles/1px.less';
   @import '~vux/src/styles/center.less';
 

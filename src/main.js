@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import {AjaxPlugin} from 'vux'
 Vue.use(AjaxPlugin)
+//引入模拟数据文件
+import mock from './util/mock'
+
 // 消除点击延迟
 import FastClick from 'fastclick'
 FastClick.attach(document.body)
